@@ -1,5 +1,23 @@
 import { createMachine, assign } from "xstate";
 
+const fillCountries = {
+	initial: "loading",
+	states: {
+		loading: {
+			on: {
+				DONE: "success",
+				ERROR: "failure",
+			},
+		},
+		success: {},
+		failure: {
+			on: {
+				RETRY: { target: "loading" },
+			},
+		},
+	},
+};
+
 const bookingMachine = createMachine(
 	{
 		id: "buy plane tickets",
@@ -21,11 +39,12 @@ const bookingMachine = createMachine(
 					CONTINUE: {
 						target: "passengers",
 						actions: assign({
-							selectedCountry: (constext, event) => event.selectedCountry,
+							selectedCountry: (context, event) => event.selectedCountry,
 						}),
 					},
 					CANCEL: "initial",
 				},
+				...fillCountries,
 			},
 			tickets: {
 				on: {
@@ -42,7 +61,7 @@ const bookingMachine = createMachine(
 					ADD: {
 						target: "passengers",
 						actions: assign((context, event) =>
-							context.passengers.push(event.newPassengers)
+							context.passengers.push(event.newPassenger)
 						),
 					},
 				},
@@ -51,10 +70,10 @@ const bookingMachine = createMachine(
 	},
 	{
 		actions: {
-			cleanContext: {
+			cleanContext: assign({
 				selectedCountry: "",
 				passengers: [],
-			},
+			}),
 		},
 	}
 );
