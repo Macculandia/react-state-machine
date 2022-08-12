@@ -12,7 +12,7 @@ export const Search = ({ send }) => {
 		setFlight(event.target.value);
 	};
 
-	const options = ["Mexico", "Venezuela", "Colombia"];
+	const options = ["Argentina", "Mexico", "Venezuela", "Colombia"];
 
 	return (
 		<div className="Search">

@@ -20,7 +20,9 @@ export const Passengers = ({ state, send }) => {
 	return (
 		<form onSubmit={submit} className="Passengers">
 			<p className="Passengers-title title">Agrega a las personas que van a volar </p>
-			<span role="img">✈️</span>
+			<span role="img" aria-labelledby="airplane">
+				✈️
+			</span>
 			<input
 				id="name"
 				name="name"
