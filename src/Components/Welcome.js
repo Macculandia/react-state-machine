@@ -1,5 +1,5 @@
 import React from "react";
-import "./Welcome.css";
+import "../Styles/Components/Welcome.css";
 
 export const Welcome = ({ send }) => {
 	const startBooking = () => {

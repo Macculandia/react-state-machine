@@ -1,5 +1,5 @@
 import React from "react";
-import "./Tickets.css";
+import "../Styles/Components/Tickets.css";
 
 export const Tickets = ({ send, context }) => {
 	const finish = () => {
